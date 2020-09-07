@@ -35,12 +35,10 @@ public class Shooting : MonoBehaviour
     //state 2 = holdSprite
     //state 3 = release
 
-    void Start()
-    {
+    void Start(){
         firePoint = gameObject.transform.GetChild(0).gameObject.transform;
     }
-    void Update()
-    {
+    void Update(){
 
         if (state == 0) {
             this.GetComponent<SpriteRenderer>().sprite = freeSprite;
@@ -91,8 +89,7 @@ public class Shooting : MonoBehaviour
 
     }
 
-    IEnumerator piercingShoot(int splitShoot = 1, int brustShoot = 1 )
-    {
+    IEnumerator piercingShoot(int splitShoot = 1, int brustShoot = 1 ){
 
         for (int i = 0; i < brustShoot; i++) {
 
@@ -107,11 +104,10 @@ public class Shooting : MonoBehaviour
             // SHOOT GOD DAMN ARROWs
             Vector2 lookDir = mousePos - bowBody.position;
             print("Calculated Dir : " + lookDir.normalized);
-            print("Estiamted Dir  : " + gameObject.GetComponent<Rigidbody2D>().velocity.normalized);
 
-            if (splitShoot > 0) { FireWithAngle(bulletObj, firePoint, lookDir, 0 ,bulletForce); }
-            if (splitShoot > 1) { FireWithAngle(bulletObj, firePoint, lookDir, 15,bulletForce); }
-            if (splitShoot > 2) { FireWithAngle(bulletObj, firePoint, lookDir,-15,bulletForce); }
+            //if (splitShoot > 0) { FireWithAngle(bulletObj, firePoint, lookDir, 0 ,bulletForce); }
+            //if (splitShoot > 1) { FireWithAngle(bulletObj, firePoint, lookDir, 15,bulletForce); }
+            //if (splitShoot > 2) { FireWithAngle(bulletObj, firePoint, lookDir,-15,bulletForce); }
             yield return new WaitForSeconds(archerySpeed);
         }
     }

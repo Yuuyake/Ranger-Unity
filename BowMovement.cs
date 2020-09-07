@@ -16,12 +16,11 @@ public class BowMovement : MonoBehaviour
     bool isBrust = false;
 
     public GameObject arrowPathMarker;
-    public GameObject preFireArrow;
+    public GameObject arrow;
     public float totalFlyingTime = 2;
 
     public float arrowSpeed = 3;
-    int fireCount = 0;
-    List<FiredArrow> firedArrows = new List<FiredArrow>();
+    //List<FiredArrow> firedArrows = new List<FiredArrow>();
 
     void Start()
     {
@@ -30,11 +29,8 @@ public class BowMovement : MonoBehaviour
 
     void Update() // Update is called every frame, cant miss anything
     {
-        if (Input.GetButton("Fire1"))
-        {
-            float angle = 45 + fireCount * 5;
-            firedArrows.Add(FireArrow(angle));
-            fireCount++;
+        if (Input.GetButtonUp("Fire1")){
+            Instantiate(arrow, gameObject.transform.position, gameObject.transform.rotation);
         }
 
         isSplit = Input.GetKey("2") == true ? true : false;
@@ -63,10 +59,5 @@ public class BowMovement : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y , lookDir.x) * Mathf.Rad2Deg;
         bowBody.rotation = angle;
         
-    }
-    private FiredArrow FireArrow(float startAngle)
-    {
-        FiredArrow newArrow = new FiredArrow(startAngle, preFireArrow, gameObject,arrowSpeed);
-        return newArrow;
     }
 }
